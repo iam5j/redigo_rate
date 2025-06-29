@@ -14,7 +14,7 @@ feature.
 
 ## Installation
 
-redis_rate supports 2 last Go versions and requires a Go version with
+redigo_rate supports 2 last Go versions and requires a Go version with
 [modules](https://github.com/golang/go/wiki/Modules) support. So make sure to initialize a Go
 module:
 
@@ -27,6 +27,14 @@ And then install redigo:
 ```shell
 go get github.com/gomodule/redigo/redis
 ```
+
+## Run Redis
+You can find more details in [Run Redis Open Source on Docker](https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/docker/)
+
+```sh
+docker run -d --name redis -p 6379:6379 redis:<version>
+```
+
 
 ## Example
 
@@ -46,7 +54,7 @@ func ExampleNewLimiter() {
 	ctx := context.Background()
 	rdb := &redis.Pool{
 		MaxActive:   5,
-		MaxIdle:     5,
+		MaxIdle:     2,
 		IdleTimeout: 5 * time.Minute,
 		Wait:        true,
 		DialContext: func(ctx context.Context) (conn redis.Conn, err error) {
