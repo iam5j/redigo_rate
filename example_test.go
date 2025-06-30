@@ -17,9 +17,8 @@ func ExampleNewLimiter() {
 		MaxIdle:     5,
 		IdleTimeout: 5 * time.Minute,
 		Wait:        true,
-		DialContext: func(ctx context.Context) (conn redis.Conn, err error) {
-			conn, err = redis.DialURLContext(ctx, "redis://127.0.0.1:6379")
-			return conn, err
+		DialContext: func(ctx context.Context) (redis.Conn, error) {
+			return redis.DialURLContext(ctx, "redis://127.0.0.1:6379")
 		},
 	}
 
